@@ -5,31 +5,31 @@ class PrintEditionItem {
 		this.name = name;
 		this.releaseDate = releaseDate;
 		this.pagesCount = pagesCount;
-		this.state = 100;
+		this._state = 100;
 		this.type = null;
 	}
 
+	set state(condition) {
+		if(condition < 0) {
+			return this._state = 0;
+		}
+		if(condition > 100) {
+			return this._state = 100;
+		}
+		else {
+			return this._state = condition;
+		}
+	}
+
+	get state() {
+		return this._state;
+	}
+
 	fix() {
-		this.state = this.state * 1.5;
+		this_.state = this.state * 1.5;
 		if(this.state > 100) {
 			this.state = 100;
 		}
-	}
-
-	set newState(condition) {
-		if(condition < 0) {
-			return this.state = 0;
-		}
-		if(condition > 100) {
-			return this.state = 100;
-		}
-		else {
-			return this.state = condition;
-		}
-	}
-
-	get newState() {
-		return this.state;
 	}
 }
 
@@ -78,18 +78,15 @@ class PrintEditionItem {
 		}
 
 		addBook(book) {
-			if(book.state > 30) {
+			if(book._state > 30) {
 				this.books.push(book);
 			}
 		}
 
-		findBookBy(type, value) {                                 //По чему метод всегда возращает null?
+		findBookBy(type, value) {                                 
 			for (let i = 0; i < this.books.length; i++) {
-				if(this.books[i].type === value) {
+				if(this.books[i][type] === value) {
 					return this.books[i];
-				}
-				else {
-					return null;
 				}
 			}
 		}
@@ -97,10 +94,7 @@ class PrintEditionItem {
 		giveBookByName(bookName) {                              //По чему метод всегда возращает null?
 			for (let i = 0; i < this.books.length; i++) {
 				if(this.books[i].name === bookName) {
-					delete this.books[i];
-				}
-				else {
-					return null;
+					 this.books.splice(this.books[i], 1);
 				}
 			}
 		}
