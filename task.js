@@ -89,6 +89,7 @@ class PrintEditionItem {
 					return this.books[i];
 				}
 			}
+			return null;
 		}
 
 		giveBookByName(bookName) {                              //По чему метод всегда возращает null?
