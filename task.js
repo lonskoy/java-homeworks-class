@@ -24,7 +24,7 @@ class PrintEditionItem {
 	}
 
 	fix() {
-		this._state = this.state * 1.5;
+		this.state = this.state * 1.5;
 	}
 }
 
@@ -91,12 +91,13 @@ class PrintEditionItem {
 			
 			let temp = this.books.findIndex(elem => elem.name === bookName);
 			if(temp > -1) {
-				console.log('Выдана книга___' + books[temp]);
+				return books[temp];
 				this.books.splice(temp,1)
 			}
 
 			return null;
 		}
+	}
 
 //Задача №3
 
