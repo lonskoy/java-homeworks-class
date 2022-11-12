@@ -16,9 +16,7 @@ class PrintEditionItem {
 		if(condition > 100) {
 			return this._state = 100;
 		}
-		else {
-			return this._state = condition;
-		}
+		return this._state = condition;
 	}
 
 	get state() {
@@ -26,10 +24,7 @@ class PrintEditionItem {
 	}
 
 	fix() {
-		this_.state = this.state * 1.5;
-		if(this.state > 100) {
-			this.state = 100;
-		}
+		this._state = this.state * 1.5;
 	}
 }
 
@@ -92,14 +87,16 @@ class PrintEditionItem {
 			return null;
 		}
 
-		giveBookByName(bookName) {                              //По чему метод всегда возращает null?
-			for (let i = 0; i < this.books.length; i++) {
-				if(this.books[i].name === bookName) {
-					 this.books.splice(this.books[i], 1);
-				}
+		giveBookByName(bookName) {                        
+			
+			let temp = this.books.findIndex(elem => elem.name === bookName);
+			if(temp > -1) {
+				console.log('Выдана книга___' + books[temp]);
+				this.books.splice(temp,1)
 			}
+
+			return null;
 		}
-	}
 
 //Задача №3
 
