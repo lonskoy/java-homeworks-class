@@ -31,14 +31,14 @@ class PrintEditionItem {
 	class Magazine extends PrintEditionItem {
 		constructor(name, releaseDate, pagesCount) {
 			super(name, releaseDate, pagesCount);
-			this.type = 'Magazine';
+			this.type = 'magazine';
 		}
 	}
 
 	class Book extends PrintEditionItem {
 		constructor(author, name, releaseDate, pagesCount) {
 			super(name, releaseDate, pagesCount);
-			this.type = 'Book';
+			this.type = 'book';
 			this.author = author;
 		}
 	}
@@ -89,12 +89,12 @@ class PrintEditionItem {
 
 		giveBookByName(bookName) {                        
 			
-			let temp = this.books.findIndex(elem => elem.name === bookName);
-			if(temp > -1) {
-				this.books.splice(temp,1);
-				return books[temp];
-			}
-
+			let tempBook = this.books.find(elem => elem.name === bookName);
+			let tempIndex = this.books.findIndex(elem => elem.name === bookName);
+				if (tempIndex > -1) {
+					this.books.splice(tempIndex, 1);
+					return tempBook;
+				}
 			return null;
 		}
 	}
